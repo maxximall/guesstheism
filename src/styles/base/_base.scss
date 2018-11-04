@@ -1,0 +1,19 @@
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: $m-size;
+  color: $grey-blue;
+  background-color: #F3F7F8
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
