@@ -33,7 +33,7 @@ class Question extends React.Component{
         this.cleanState();
         
      }
-
+    
     submitAnswer = (answer) => { 
         
         if(this.state.correctAnswer === this.state.options[answer]){
@@ -51,8 +51,11 @@ class Question extends React.Component{
             wrongOption.classList.add("incorrect")
         }
 
-            const rightOption = document.getElementById(this.indexOfCorrectAnswer());
-            rightOption.classList.add("correct");
+        const rightOption = document.getElementById(this.indexOfCorrectAnswer());
+        rightOption.classList.add("correct");
+
+        this.disableClickOnSubmit();
+        
          
     }
     indexOfCorrectAnswer(){
@@ -65,7 +68,21 @@ class Question extends React.Component{
         if(incorrect.length > 0){
             incorrect[0].classList.remove("incorrect");
         }
+        this.enableClick();
     
+    }
+    disableClickOnSubmit(){
+        let options = document.querySelectorAll('td');
+        options.forEach(element => {
+            element.style.pointerEvents = 'none'
+        });
+    }
+    enableClick(){
+        console.log('enable fired')
+        let options = document.querySelectorAll('td');
+        options.forEach(element => {
+            element.style.pointerEvents = 'auto'
+        });
     }
         
     render(){
@@ -79,11 +96,11 @@ class Question extends React.Component{
                     <table>
                         <tbody>
                             <tr>
-                                <td id='0' onClick={() => this.submitAnswer(0)}>{this.state.options[0]}</td>
-                                <td id='1' onClick={() => this.submitAnswer(1)}>{this.state.options[1]}</td>
+                                <td id='0' className="option" onClick={() => this.submitAnswer(0)}>{this.state.options[0]}</td>
+                                <td id='1'  className="option" onClick={() => this.submitAnswer(1)}>{this.state.options[1]}</td>
                             </tr>
                             <tr>
-                                <td id='2' onClick={() => this.submitAnswer(2)}>{this.state.options[2]}</td>
+                                <td id='2'  className="option" onClick={() => this.submitAnswer(2)}>{this.state.options[2]}</td>
                                 <td id='3' onClick={() => this.submitAnswer(3)}>{this.state.options[3]}</td>
                             </tr>
                         </tbody>
